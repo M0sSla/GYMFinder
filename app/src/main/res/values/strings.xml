@@ -2,7 +2,8 @@
     <string name="app_name">GYMFinder</string>
     <string name="title_home">Home</string>
     <string name="title_finder">Find</string>
-    <string name="title_chat">Find</string>
+    <string name="title_chat">Chat</string>
     <string name="title_training">Training</string>
+    <string name="title_training_fast_start">Быстрый старт</string>
     <string name="title_profile">Profile</string>
 </resources>

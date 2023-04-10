@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,8 +25,10 @@ public class TrainingFragment extends Fragment {
         binding = FragmentTrainingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
+        final TextView textView = binding.textTrainingFastStart;
+        final Button button = binding.buttonFastStart;
         trainingViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        trainingViewModel.getTextButton().observe(getViewLifecycleOwner(), button::setText);
         return root;
     }
 
