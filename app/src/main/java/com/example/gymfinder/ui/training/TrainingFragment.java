@@ -10,8 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
+import com.example.gymfinder.R;
 import com.example.gymfinder.databinding.FragmentTrainingBinding;
+
+import java.lang.annotation.Native;
 
 public class TrainingFragment extends Fragment {
 
@@ -27,8 +31,13 @@ public class TrainingFragment extends Fragment {
 
         final TextView textView = binding.textTrainingFastStart;
         final Button button = binding.buttonFastStart;
+
         trainingViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         trainingViewModel.getTextButton().observe(getViewLifecycleOwner(), button::setText);
+
+        button.setOnClickListener(v -> {
+            moveToCurrentTrainingFragment(transitionInfo());
+        });
         return root;
     }
 
@@ -36,5 +45,13 @@ public class TrainingFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private Bundle transitionInfo() {
+        Bundle bundle = new Bundle();
+        return bundle;
+    }
+    private void moveToCurrentTrainingFragment(Bundle bundle) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_navigation_training_to_currentTrainingFragment, bundle);
     }
 }
