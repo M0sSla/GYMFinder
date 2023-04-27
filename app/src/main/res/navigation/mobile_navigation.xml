@@ -41,5 +41,9 @@
         android:id="@+id/currentTrainingFragment"
         android:name="com.example.gymfinder.ui.currentTraining.CurrentTrainingFragment"
         android:label="fragment_current_training"
-        tools:layout="@layout/fragment_current_training" />
+        tools:layout="@layout/fragment_current_training" >
+        <action
+            android:id="@+id/action_currentTrainingFragment_to_navigation_training2"
+            app:destination="@id/navigation_training" />
+    </fragment>
 </navigation>

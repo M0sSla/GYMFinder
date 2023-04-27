@@ -11,4 +11,6 @@
     <string name="trainings">Тренировки</string>
     <string name="duration">Время</string>
     <string name="volume">Объём</string>
+    <string name="set">Подходы</string>
+    <string name="end">Закончить тренировку</string>
 </resources>
