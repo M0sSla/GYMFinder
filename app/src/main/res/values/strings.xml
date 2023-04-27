@@ -6,4 +6,9 @@
     <string name="title_training">Training</string>
     <string name="title_training_fast_start">Быстрый старт</string>
     <string name="title_profile">Profile</string>
+    <string name="nickname">Имя пользователя</string>
+    <string name="friends">Друзья</string>
+    <string name="trainings">Тренировки</string>
+    <string name="duration">Время</string>
+    <string name="volume">Объём</string>
 </resources>
