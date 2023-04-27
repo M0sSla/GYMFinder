@@ -77,7 +77,7 @@
             android:text="@string/duration"
             />
         <TextView
-            android:id="@+id/count_of_friends"
+            android:id="@+id/duration"
             android:maxLines="1"
             android:ellipsize="end"
             android:layout_width="match_parent"
@@ -107,7 +107,7 @@
             android:text="@string/volume"
             />
         <TextView
-            android:id="@+id/count_of_trainings"
+            android:id="@+id/volume"
             android:maxLines="1"
             android:ellipsize="end"
             android:layout_width="match_parent"
