@@ -34,11 +34,11 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull TrainingAdapter.ViewHolder holder, int position) {
-        holder.binding.volume.setText((data.get(position).volume) + " Кг");
-        holder.binding.duration.setText((data.get(position).time) + " Мин");
+        holder.binding.volume.setText((data.get(position).getVolume()) + " Кг");
+        holder.binding.duration.setText((data.get(position).getTime()) + " Мин");
         holder.binding.date.setText("Когда-то очень давно!");
-        holder.binding.info.setText(data.get(position).info);
-        holder.binding.nickname.setText(data.get(position).nickname);
+        holder.binding.info.setText(data.get(position).getInfo());
+        holder.binding.nickname.setText(data.get(position).getNickname());
     }
 
     @Override
