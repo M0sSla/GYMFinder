@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.gymfinder.databinding.FragmentCurrentTrainingBinding;
 
@@ -22,7 +23,7 @@ public class CurrentTrainingFragment extends Fragment {
         binding = FragmentCurrentTrainingBinding.inflate(inflater, container, false);
         CurrentTrainingViewModel currentTrainingViewModel = new ViewModelProvider(this).get(CurrentTrainingViewModel.class);
         binding.endTraining.setOnClickListener(v -> {
-            currentTrainingViewModel.endTraining();
+            currentTrainingViewModel.endTraining(v, binding);
             currentTrainingViewModel.returnBack(v);
         });
 

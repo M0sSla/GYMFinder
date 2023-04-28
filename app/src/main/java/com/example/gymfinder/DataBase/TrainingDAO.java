@@ -22,6 +22,6 @@ public interface TrainingDAO {
 
 
     @Query("SELECT * FROM training_table")
-    Observable<List<TrainingItem>> getAllTask();
+    Observable<List<TrainingItem>> getAllTraining();
 
 }
