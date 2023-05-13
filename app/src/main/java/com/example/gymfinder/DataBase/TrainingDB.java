@@ -14,7 +14,7 @@ public abstract class TrainingDB extends RoomDatabase {
 
     public abstract TrainingDAO TrainingDAO();
 
-    public static TrainingDB getInstance(Context context) {
+    public static synchronized TrainingDB getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(), TrainingDB.class, "training_table").build();
             // создать экземпляр класса и поместить его в переменную instance

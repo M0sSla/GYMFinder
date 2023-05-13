@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/round_button"
+        android:text="@string/sgn_out"
+        app:layout_constraintBottom_toTopOf="@+id/bios"
+        app:layout_constraintStart_toEndOf="@+id/card_trainings_count_icon"
+        app:layout_constraintTop_toBottomOf="@id/nickname" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_profile_icon"
         app:layout_constraintStart_toStartOf="parent"

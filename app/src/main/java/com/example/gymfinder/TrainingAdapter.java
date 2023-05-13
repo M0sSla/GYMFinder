@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.ViewHolder> {
+public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.TrainingViewHolder> {
 
-    private ArrayList<TrainingItem> data;
+    private final ArrayList<TrainingItem> data;
 
     public TrainingAdapter(ArrayList<TrainingItem> data) {
         this.data = data;
@@ -22,18 +22,18 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.ViewHo
 
     @NonNull
     @Override
-    public TrainingAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TrainingAdapter.TrainingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        TrainingItemBinding binding =TrainingItemBinding
+        TrainingItemBinding binding = TrainingItemBinding
                 .inflate(LayoutInflater.from(
                         parent.getContext()),
                         parent,
                         false);
-        return new ViewHolder(binding);
+        return new TrainingViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TrainingAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TrainingAdapter.TrainingViewHolder holder, int position) {
         holder.binding.volume.setText((data.get(position).getVolume()) + " Кг");
         holder.binding.duration.setText((data.get(position).getTime()) + " Мин");
         holder.binding.date.setText("Когда-то очень давно!");
@@ -46,9 +46,9 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.ViewHo
         return data.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class TrainingViewHolder extends RecyclerView.ViewHolder {
         TrainingItemBinding binding;
-        public ViewHolder(TrainingItemBinding binding) {
+        public TrainingViewHolder(TrainingItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

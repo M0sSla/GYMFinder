@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/authorizationFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -25,7 +25,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.gymfinder.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_finder"
@@ -45,5 +49,28 @@
         <action
             android:id="@+id/action_currentTrainingFragment_to_navigation_training2"
             app:destination="@id/navigation_training" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.example.gymfinder.ui.auth.AuthorizationFragment"
+        android:label="fragment_authorization"
+        tools:layout="@layout/fragment_authorization" >
+        <action
+            android:id="@+id/action_authorizationFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_authorizationFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.gymfinder.ui.auth.RegistrationFragment"
+        android:label="RegistrationFragment"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
     </fragment>
 </navigation>

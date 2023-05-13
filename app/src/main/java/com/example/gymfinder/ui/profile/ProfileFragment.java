@@ -1,5 +1,6 @@
 package com.example.gymfinder.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.gymfinder.R;
 import com.example.gymfinder.DataBase.TrainingDAO;
 import com.example.gymfinder.DataBase.TrainingDB;
 import com.example.gymfinder.TrainingAdapter;
 import com.example.gymfinder.TrainingItem;
 import com.example.gymfinder.databinding.FragmentProfileBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +45,15 @@ public class ProfileFragment extends Fragment {
 
         final TextView textView = binding.nickname;
         profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        binding.logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Navigation.findNavController(root).navigate(R.id.action_navigation_profile_to_authorizationFragment);
+            }
+        });
+
         return root;
     }
 

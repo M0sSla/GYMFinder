@@ -37,6 +37,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Fragment_avatar"
+            android:src="@drawable/avatar"
+            />
+
     </androidx.cardview.widget.CardView>
 
     <ImageButton

@@ -21,11 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    Disposable trainingListDisposable;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,7 +37,10 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         TrainingDB trainingDB = TrainingDB.getInstance(requireContext());
         TrainingDAO trainingDAO = trainingDB.TrainingDAO();
-        trainingDAO.getAllTraining().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(this::onTaskLoaded);
+        trainingListDisposable = trainingDAO
+                .getAllTraining()
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onTaskLoaded);
 
         View root = binding.getRoot();
 
@@ -56,5 +61,6 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        trainingListDisposable.dispose();
     }
 }

@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "600371255133",
+    "project_id": "gymfinder-c418",
+    "storage_bucket": "gymfinder-c418.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600371255133:android:93a159b517a6bd71443ab4",
+        "android_client_info": {
+          "package_name": "com.example.authentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600371255133-6kggffa37gqe3k4qtj5bpibfa8g2ddt3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnDiKGC1M1A8XJgz71Hk9ADsMknsf9lhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600371255133-6kggffa37gqe3k4qtj5bpibfa8g2ddt3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600371255133:android:cd8ec5c110c84ae8443ab4",
+        "android_client_info": {
+          "package_name": "com.example.gymfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600371255133-6kggffa37gqe3k4qtj5bpibfa8g2ddt3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnDiKGC1M1A8XJgz71Hk9ADsMknsf9lhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600371255133-6kggffa37gqe3k4qtj5bpibfa8g2ddt3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

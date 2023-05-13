@@ -17,8 +17,8 @@ public interface TrainingDAO {
     @Insert
     Completable addTraining(TrainingItem trainingItem);
 
-    @Query("SELECT * FROM training_table WHERE id = :id")
-    Observable<TrainingItem> getTask(int id);
+    /*@Query("SELECT * FROM training_table WHERE id = :id")
+    Observable<TrainingItem> getTask(int id);*/
 
 
     @Query("SELECT * FROM training_table")

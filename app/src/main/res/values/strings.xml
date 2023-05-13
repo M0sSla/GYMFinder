@@ -13,4 +13,13 @@
     <string name="volume">Объём</string>
     <string name="set">Подходы</string>
     <string name="end">Закончить тренировку</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="sign_in">Войти</string>
+    <string name="sgn_in">Вход</string>
+    <string name="sgn_out">Выход</string>
+    <string name="create_account">Регистрация</string>
+    <string name="also_sign_in">ВХОД</string>
+    <string name="also_reg_in">РЕГИСТРАЦИЯ</string>
 </resources>
