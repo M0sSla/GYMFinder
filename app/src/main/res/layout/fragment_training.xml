@@ -11,7 +11,7 @@
         android:id="@+id/textTrainingFastStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:textAlignment="textStart"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/buttonFastStart"
@@ -21,9 +21,10 @@
 
     <Button
         android:id="@+id/buttonFastStart"
+        android:background="@drawable/round_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:drawableLeft="@drawable/add"
         android:gravity="start"
         android:textSize="18sp"

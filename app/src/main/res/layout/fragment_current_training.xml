@@ -104,9 +104,35 @@
             />
     </androidx.cardview.widget.CardView>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recExercises"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/card_duration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/new_exercise"
+        />
+
+    <Button
+        android:id="@+id/new_exercise"
+        android:background="@drawable/round_button"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/end_training"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/add_exercise"
+        android:textStyle="bold|italic"
+        />
+
     <Button
         android:id="@+id/end_training"
+        android:background="@drawable/round_button"
         android:layout_marginBottom="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
