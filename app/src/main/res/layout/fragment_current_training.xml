@@ -14,8 +14,7 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:cardCornerRadius="4dp">
         <TextView
             android:id="@+id/name_duration"
@@ -46,8 +45,7 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:cardCornerRadius="4dp">
         <TextView
             android:id="@+id/name_volume"
@@ -79,8 +77,7 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:cardCornerRadius="4dp">
         <TextView
             android:id="@+id/name_set"

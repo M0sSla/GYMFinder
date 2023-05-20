@@ -8,4 +8,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_red">#F44444</color>
+
+    <color name="PRIMARY_LIGHT_SCHEME">#00696c</color>
+    <color name="SECONDARY_LIGHT_SCHEME">#4a6364</color>
+    <color name="TRETIARY_LIGHT_SCHEME">#4d5f7c</color>
+    <color name="ERROR_LIGHT_SCHEME">#ba1a1a</color>
+    <color name="BACKGROUND_LIGHT_SCHEME">#fafdfc</color>
+
+    <color name="PRIMARY_DARK_SCHEME">#4cdade</color>
+    <color name="SECONDARY_DARK_SCHEME">#b0cccc</color>
+    <color name="TRETIARY_DARK_SCHEME">#b4c7e9</color>
+    <color name="ERROR_DARK_SCHEME">#ffb4ab</color>
+    <color name="BACKGROUND_DARK_SCHEME">#191c1c</color>
+
 </resources>

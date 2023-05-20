@@ -40,6 +40,13 @@ public class CurrentTrainingFragment extends Fragment {
             }
         });
 
+        binding.endTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(root).navigate(R.id.action_currentTrainingFragment_to_navigation_training2);
+            }
+        });
+
         return root;
     }
 

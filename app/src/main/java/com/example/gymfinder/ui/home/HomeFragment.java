@@ -16,6 +16,8 @@ import com.example.gymfinder.DataBase.TrainingDB;
 import com.example.gymfinder.TrainingAdapter;
 import com.example.gymfinder.TrainingItem;
 import com.example.gymfinder.databinding.FragmentHomeBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,12 @@ import io.reactivex.schedulers.Schedulers;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference training = database.getReference("user").child("training");
+    DatabaseReference userCurrent = database.getReference("user");
+
+    // хранение всех тренировок
+    ArrayList<TrainingItem> trainings = new ArrayList<>();
     Disposable trainingListDisposable;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,8 +52,6 @@ public class HomeFragment extends Fragment {
 
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
