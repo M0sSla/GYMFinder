@@ -110,8 +110,10 @@ public class ExercisesFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     ExerciseItem message = dataSnapshot.getValue(ExerciseItem.class);
-                    exercises.add(message);
-                    adapter.notifyDataSetChanged();
+                    if (exercises.contains(message)) {
+                        exercises.add(message);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
             }
             @Override

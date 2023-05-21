@@ -1,5 +1,6 @@
 package com.example.gymfinder.ui.addExercise;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExerciseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ExerciseViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //holder.binding.IMAGE.setsrc че-то там, бла-бла-бла
         holder.binding.nameExercise.setText(data.get(position).getName());
         holder.binding.groupExercise.setText(data.get(position).getGroup());
@@ -44,7 +45,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(Integer.toString(position), data.get(position));
+                bundle.putSerializable("id", data.get(position));
                 Navigation.findNavController(holder.binding.getRoot()).navigate(R.id.action_exercisesFragment_to_currentTrainingFragment, bundle);
             }
         });

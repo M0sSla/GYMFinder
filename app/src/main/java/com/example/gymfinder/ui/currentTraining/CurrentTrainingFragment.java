@@ -25,6 +25,8 @@ public class CurrentTrainingFragment extends Fragment {
     FragmentCurrentTrainingBinding binding;
     protected ArrayList<ExerciseItem> exerciseData = new ArrayList<>();
     protected Integer cnt = 0;
+    private ExerciseAdapter adapter =
+            new ExerciseAdapter(exerciseData);
 
     @Nullable
     @Override
@@ -32,6 +34,10 @@ public class CurrentTrainingFragment extends Fragment {
         binding = FragmentCurrentTrainingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        binding.recExercises
+                .setLayoutManager(new LinearLayoutManager(getContext()));
+
+        binding.recExercises.setAdapter(adapter);
 
         binding.newExercise.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,20 +56,18 @@ public class CurrentTrainingFragment extends Fragment {
         return root;
     }
 
+
+
     @Override
     public void onResume() {
         super.onResume();
         assert getArguments() != null;
-        ExerciseItem newItem = (ExerciseItem) getArguments().getSerializable(Integer.toString(cnt));
-        binding.recExercises
-                .setLayoutManager(new LinearLayoutManager(getContext()));
-        if (exerciseData.contains(newItem)) {
+        ExerciseItem newItem = (ExerciseItem) getArguments().getSerializable("id");
+        if (!exerciseData.contains(newItem) && newItem != null) {
             cnt++;
             exerciseData.add(newItem);
         }
-        ExerciseAdapter adapter =
-                new ExerciseAdapter(exerciseData);
-        binding.recExercises.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

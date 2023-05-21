@@ -14,6 +14,8 @@ public class ExerciseItem implements Serializable {
         this.group = group;
     }
 
+    public ExerciseItem() {}
+
     public Integer getId() {
         return id;
     }
