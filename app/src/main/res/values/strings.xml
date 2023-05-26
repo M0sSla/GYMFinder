@@ -18,6 +18,7 @@
     <string name="choice">Выбор упражнения</string>
 
     <string name="repeats">Повторения</string>
+    <string name="weight">Вес</string>
 
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>

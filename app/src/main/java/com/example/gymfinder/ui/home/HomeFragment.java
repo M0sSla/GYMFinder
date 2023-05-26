@@ -16,6 +16,8 @@ import com.example.gymfinder.DataBase.TrainingDB;
 import com.example.gymfinder.TrainingAdapter;
 import com.example.gymfinder.TrainingItem;
 import com.example.gymfinder.databinding.FragmentHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,44 +31,24 @@ import io.reactivex.schedulers.Schedulers;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference training = database.getReference("user").child("training");
-    DatabaseReference userCurrent = database.getReference("user");
+    DatabaseReference training = database.getReference("user").child(currentUser.getUid()).child("training");
 
-    // хранение всех тренировок
-    ArrayList<TrainingItem> trainings = new ArrayList<>();
-    Disposable trainingListDisposable;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        TrainingDB trainingDB = TrainingDB.getInstance(requireContext());
-        TrainingDAO trainingDAO = trainingDB.TrainingDAO();
-        trainingListDisposable = trainingDAO
-                .getAllTraining()
-                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onTaskLoaded);
-
         View root = binding.getRoot();
 
-        return root;
-    }
+        ArrayList<TrainingItem> trainingData = new ArrayList<>();
 
-    private void onTaskLoaded(List<TrainingItem> trainingItems) {
-        TrainingAdapter adapter = new TrainingAdapter((ArrayList<TrainingItem>) trainingItems);
-        binding.recyclerTraining.setLayoutManager(
-                new LinearLayoutManager(requireContext())
-        );
-        binding.recyclerTraining.setAdapter(adapter);
+        return root;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        trainingListDisposable.dispose();
     }
 }

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gymfinder.TrainingItem;
 import com.example.gymfinder.databinding.FragmentExercisesBinding;
+import com.example.gymfinder.ui.currentTraining.ExerciseItemTraining;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,11 +50,8 @@ public class ExercisesFragment extends Fragment {
         binding.recExercises.setAdapter(adapter);
 
 
-        /*String exerciseId = exercise.push().getKey();
-        ExerciseItem item1 = new ExerciseItem(0,"Отжимания", "Грудные мыщцы");
-        exercise.child(exerciseId).setValue(item1);*/
-
         /*
+        ExerciseItem item1 = new ExerciseItem(0,"Отжимания", "Грудные мыщцы");
         ExerciseItem item11 = new ExerciseItem(1, "Жим лёжа", "Грудные мыщцы");
         ExerciseItem item12 = new ExerciseItem(2, "Жим лёжа гантелями", "Грудные мыщцы");
         ExerciseItem item13 = new ExerciseItem(3, "Разведение рук с гантелями", "Грудные мыщцы");
@@ -66,26 +64,14 @@ public class ExercisesFragment extends Fragment {
         ExerciseItem item61 = new ExerciseItem(10, "21 сгибание", "Бицепс");
         ExerciseItem item62 = new ExerciseItem(11, "Молотки", "Бицепс");
         ExerciseItem item63 = new ExerciseItem(12, "Сгибание со штангой", "Бицепс");
-        exercises.add(item1);
-        exercises.add(item11);
-        exercises.add(item12);
-        exercises.add(item13);
-        exercises.add(item21);
-        exercises.add(item22);
-        exercises.add(item3);
-        exercises.add(item4);
-        exercises.add(item51);
-        exercises.add(item52);
-        exercises.add(item61);
-        exercises.add(item62);
-        exercises.add(item63);
-        exercise.setValue(exercises);*/
+        String exerciseId = exercise.push().getKey();
+        exercise.child(exerciseId).setValue(item63);*/
 
         exercise.addChildEventListener(new ChildEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                // Получаем новое сообщение
+                // Получаем новое упражнение
                 ExerciseItem tmp = dataSnapshot.getValue(ExerciseItem.class);
                 exercises.add(tmp);
                 adapter.notifyDataSetChanged();
@@ -104,8 +90,8 @@ public class ExercisesFragment extends Fragment {
             }
         });
 
-
-        ValueEventListener exerciseListener = new ValueEventListener() {
+        // Не обязательно иметь данный кусок кода, без него не ломается но пока что оставлю
+        /*ValueEventListener exerciseListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -122,9 +108,8 @@ public class ExercisesFragment extends Fragment {
                 Toast.makeText(getContext(), "Значения не получены", Toast.LENGTH_SHORT).show();
             }
         };
-
         // listener на узел информации текущего пользователя
-        exercise.addListenerForSingleValueEvent(exerciseListener);
+        exercise.addListenerForSingleValueEvent(exerciseListener);*/
 
         // Инициализация ConnectivityManager
         connectivityManager = (ConnectivityManager) requireContext().getSystemService(Context.CONNECTIVITY_SERVICE);

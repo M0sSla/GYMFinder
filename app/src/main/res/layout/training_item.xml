@@ -57,6 +57,7 @@
     />
 
     <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME"
         android:id="@+id/card_duration_icon"
         app:layout_constraintTop_toBottomOf="@id/info"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +68,7 @@
         android:layout_marginTop="16dp"
         app:cardCornerRadius="4dp">
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/name_duration"
             android:maxLines="1"
             android:ellipsize="end"
@@ -77,6 +79,7 @@
             android:text="@string/duration"
             />
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/duration"
             android:maxLines="1"
             android:ellipsize="end"
@@ -87,6 +90,7 @@
             />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME"
         android:id="@+id/card_volume_icon"
         app:layout_constraintTop_toBottomOf="@id/info"
         app:layout_constraintStart_toEndOf="@id/card_duration_icon"
@@ -97,6 +101,7 @@
         android:layout_marginTop="16dp"
         app:cardCornerRadius="4dp">
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/name_volume"
             android:maxLines="1"
             android:ellipsize="end"
@@ -107,6 +112,7 @@
             android:text="@string/volume"
             />
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/volume"
             android:maxLines="1"
             android:ellipsize="end"
@@ -124,6 +130,7 @@
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card_volume_icon"
+        android:background="@color/TRETIARY_DARK_SCHEME"
         android:src="@drawable/like"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

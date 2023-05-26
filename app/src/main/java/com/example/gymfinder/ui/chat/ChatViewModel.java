@@ -11,7 +11,7 @@ public class ChatViewModel extends ViewModel {
 
     public ChatViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is a chat fragment");
+        mText.setValue("Здесь могла быть ваша реклама :D");
     }
     public LiveData<String> getText() { return mText; }
 }

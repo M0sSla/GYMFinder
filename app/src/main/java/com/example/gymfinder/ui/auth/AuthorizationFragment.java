@@ -21,6 +21,7 @@ import com.example.gymfinder.databinding.ActivityMainBinding;
 import com.example.gymfinder.databinding.FragmentAuthorizationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,6 +50,9 @@ public class AuthorizationFragment extends BaseAuth {
         View root = binding.getRoot();
         //activityMainBinding.navView.setVisibility(View.INVISIBLE);
         auth = FirebaseAuth.getInstance();
+
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.nav_view);
+        //bottomNavigationView.setVisibility(View.GONE);
 
         binding.emailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override

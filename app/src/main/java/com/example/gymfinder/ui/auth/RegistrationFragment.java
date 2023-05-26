@@ -17,6 +17,7 @@ import com.example.gymfinder.databinding.ActivityMainBinding;
 import com.example.gymfinder.databinding.FragmentRegistrationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -32,7 +33,9 @@ public class RegistrationFragment extends Fragment {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         auth = FirebaseAuth.getInstance();
-        //activityMainBinding.navView.setVisibility(View.INVISIBLE);
+
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.nav_view);
+        //bottomNavigationView.setVisibility(View.GONE);
 
         binding.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

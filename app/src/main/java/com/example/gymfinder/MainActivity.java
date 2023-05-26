@@ -39,13 +39,8 @@ public class MainActivity extends AppCompatActivity implements HidingBottomNav {
     @Override
     protected void onResume() {
         super.onResume();
-        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host);
-        Fragment tmp = getSupportFragmentManager().findFragmentById(R.id.authorizationFragment);
-        Fragment tmp2 = getSupportFragmentManager().findFragmentById(R.id.registrationFragment);
-        if (currentFragment instanceof AuthorizationFragment || currentFragment instanceof RegistrationFragment) {
-            // Скрываем BottomNavigationView
-            HidingNavigation(currentFragment);
-        }
+        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
+        bottomNavigationView.setVisibility(View.VISIBLE);
     }
 
     @Override

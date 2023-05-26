@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_training_to_currentTrainingFragment"
             app:destination="@id/currentTrainingFragment" />
+        <action
+            android:id="@+id/action_navigation_training_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
     </fragment>
 
     <fragment
@@ -52,6 +55,9 @@
         <action
             android:id="@+id/action_currentTrainingFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment" />
+        <action
+            android:id="@+id/action_currentTrainingFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
     </fragment>
 
     <fragment

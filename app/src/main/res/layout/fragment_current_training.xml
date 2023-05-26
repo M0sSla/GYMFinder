@@ -15,7 +15,8 @@
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME">
         <TextView
             android:id="@+id/name_duration"
             android:maxLines="1"
@@ -24,6 +25,7 @@
             android:layout_height="wrap_content"
             android:gravity="center|top"
             android:textSize="11sp"
+            android:textColor="@color/black"
             android:text="@string/duration"
             />
         <TextView
@@ -33,7 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center|bottom"
-            tools:text="10"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            tools:text="-"
             />
     </androidx.cardview.widget.CardView>
 
@@ -46,7 +50,8 @@
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME">
         <TextView
             android:id="@+id/name_volume"
             android:maxLines="1"
@@ -55,17 +60,19 @@
             android:layout_height="wrap_content"
             android:gravity="center|top"
             android:textSize="11sp"
+            android:textColor="@color/black"
             android:text="@string/volume"
             />
-        <EditText
-            android:inputType="number"
+        <TextView
             android:id="@+id/volume"
             android:maxLines="1"
             android:ellipsize="end"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center|bottom"
-            tools:text="10"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            tools:text="-"
             />
     </androidx.cardview.widget.CardView>
 
@@ -78,7 +85,8 @@
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME">
         <TextView
             android:id="@+id/name_set"
             android:maxLines="1"
@@ -87,9 +95,10 @@
             android:layout_height="wrap_content"
             android:gravity="center|top"
             android:textSize="11sp"
+            android:textColor="@color/black"
             android:text="@string/set"
             />
-        <EditText
+        <TextView
             android:inputType="number"
             android:id="@+id/count_of_trainings"
             android:maxLines="1"
@@ -97,16 +106,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center|bottom"
-            tools:text="10"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            tools:text="-"
             />
     </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/editInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/card_volume"
+        app:layout_constraintBottom_toTopOf="@id/recExercises"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recExercises"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/card_duration"
+        app:layout_constraintTop_toBottomOf="@id/editInfo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/new_exercise"
