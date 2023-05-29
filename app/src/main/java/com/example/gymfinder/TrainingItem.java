@@ -25,6 +25,9 @@ public class TrainingItem {
         this.date = 10;
     }
 
+    public TrainingItem() {
+    }
+
     public int getTime() {
         return time;
     }
@@ -41,4 +44,24 @@ public class TrainingItem {
         return date;
     }
 
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
 }

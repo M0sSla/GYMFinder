@@ -1,5 +1,6 @@
 package com.example.gymfinder.ui.auth;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -38,21 +39,20 @@ public class AuthorizationFragment extends BaseAuth {
         super.onStart();
         FirebaseUser currentUser = auth.getCurrentUser();
         if(currentUser != null){
-            //activityMainBinding.navView.setVisibility(View.VISIBLE);
             Navigation.findNavController(binding.getRoot()).navigate(R.id.action_authorizationFragment_to_navigation_home);
         }
     }
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentAuthorizationBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        //activityMainBinding.navView.setVisibility(View.INVISIBLE);
         auth = FirebaseAuth.getInstance();
+        View root = binding.getRoot();
 
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.nav_view);
-        //bottomNavigationView.setVisibility(View.GONE);
 
         binding.emailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +103,8 @@ public class AuthorizationFragment extends BaseAuth {
                         });
             }
         });
+
+
 
         binding.emailCreateAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override

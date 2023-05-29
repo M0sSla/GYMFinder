@@ -1,15 +1,22 @@
 package com.example.gymfinder;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.gymfinder.ui.auth.AuthorizationFragment;
 import com.example.gymfinder.ui.auth.RegistrationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -34,13 +41,22 @@ public class MainActivity extends AppCompatActivity implements HidingBottomNav {
         NavController navController = Navigation.findNavController(this, R.id.nav_host);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
-        bottomNavigationView.setVisibility(View.VISIBLE);
+
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
+
+                if (navDestination.getId() == R.id.authorizationFragment || navDestination.getId() == R.id.registrationFragment) {
+                    navView.setVisibility(View.GONE);
+                }
+                else {
+                    navView.setVisibility(View.VISIBLE);
+                }
+            }
+
+        });
     }
 
     @Override

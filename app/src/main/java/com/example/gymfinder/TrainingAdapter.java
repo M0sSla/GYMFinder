@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfinder.databinding.TrainingItemBinding;
@@ -39,6 +40,10 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Traini
         holder.binding.date.setText("Когда-то очень давно!");
         holder.binding.info.setText(data.get(position).getInfo());
         holder.binding.nickname.setText(data.get(position).getNickname());
+
+        holder.binding.trainingItemContainer.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_trainingInfoFragment);
+        });
     }
 
     @Override

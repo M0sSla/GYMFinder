@@ -2,6 +2,8 @@ package com.example.gymfinder.ui.currentTraining;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +35,15 @@ public class CurrentTrainingFragment extends Fragment {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseUser currentUser = (FirebaseAuth.getInstance()).getCurrentUser();
+
+
+    DatabaseReference user = database.getReference("user").child(currentUser.getUid());
     DatabaseReference currentTraining = database.getReference("user").child(currentUser.getUid()).child("currentTraining");
     DatabaseReference training = database.getReference("user").child(currentUser.getUid()).child("training");
     DatabaseReference currentVolume = database.getReference("user").child(currentUser.getUid()).child("currentVolume");
+    DatabaseReference currentInfo = database.getReference("user").child(currentUser.getUid()).child("currentInfo");
 
     @Nullable
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ArrayList<ExerciseItemTraining> exerciseData = new ArrayList<>();
@@ -49,6 +54,115 @@ public class CurrentTrainingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(root).navigate(R.id.action_currentTrainingFragment_to_exercisesFragment);
+            }
+        });
+
+        /*user.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if (snapshot.exists()) {
+                    Integer volume = 0;
+                    user.child("tmp").setValue(snapshot.toString());
+                    Toast.makeText(getContext(), snapshot.toString(), Toast.LENGTH_LONG).show();
+                    if (snapshot.child("currentTraining").exists()) {
+                        for (DataSnapshot snap : snapshot.child("currentTraining").getChildren()) {
+                            ExerciseItemTraining tmp = snap.getValue(ExerciseItemTraining.class);
+                            volume += tmp.getRepeats() * tmp.getWeight();
+                        }
+                    }
+                    user.child("currentVolume").setValue(volume);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if (snapshot.exists()) {
+                    Integer volume = 0;
+                    if (snapshot.child("currentTraining").exists()) {
+                        for (DataSnapshot snap : snapshot.child("currentTraining").getChildren()) {
+                            ExerciseItemTraining tmp = snap.getValue(ExerciseItemTraining.class);
+                            volume += tmp.getRepeats() * tmp.getWeight();
+                        }
+                    }
+                    user.child("currentVolume").setValue(volume);
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });*/
+        user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Integer volume = 0;
+                    if (snapshot.child("currentTraining").exists()) {
+                        for (DataSnapshot snap : snapshot.child("currentTraining").getChildren()) {
+                            ExerciseItemTraining tmp = snap.getValue(ExerciseItemTraining.class);
+                            if (tmp.getRepeats() != null && tmp.getWeight() != null) {
+                                volume += tmp.getRepeats() * tmp.getWeight();
+                            }
+                        }
+                    }
+                    user.child("currentVolume").setValue(volume);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        currentVolume.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    binding.volume.setText(snapshot.getValue().toString());
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
+        binding.editInfo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() != 0) {
+                    currentInfo.setValue(s.toString());
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                ;
+            }
+        });
+
+        currentInfo.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    if (snapshot.getValue() != null) {
+                        // обрезка лишних пробелов
+                        String tmp = snapshot.getValue().toString().trim();
+                        binding.editInfo.setText(tmp);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
 
@@ -63,17 +177,28 @@ public class CurrentTrainingFragment extends Fragment {
                                 if (snapshot.exists()) {
                                     String nickname = snapshot.child("nickname").getValue().toString();
                                     Integer volume = Integer.parseInt(snapshot.child("currentVolume").getValue().toString());
+                                    String info = snapshot.child("currentInfo").getValue().toString();
                                     TrainingItem newTraining =
-                                            new TrainingItem(0, volume, nickname,"info", 0);
+                                            new TrainingItem(0, volume, nickname, info, 0);
                                     String trainingId = training.push().getKey();
                                     training.child(trainingId).setValue(newTraining);
                                     currentTraining.removeValue();
+                                    try {
+                                        Thread.sleep(3000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
                                     currentVolume.removeValue();
+                                    try {
+                                        Thread.sleep(3000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    currentInfo.removeValue();
                                 }
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-
                             }
                         });
                 // Добавление класса trainingItem в базу данных
@@ -87,60 +212,55 @@ public class CurrentTrainingFragment extends Fragment {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
-        if (user == null) {
-            Navigation.findNavController(root).navigate(R.id.action_currentTrainingFragment_to_authorizationFragment);
-        }
-        else {
-            binding.recExercises
-                    .setLayoutManager(new LinearLayoutManager(getContext()));
-            ExerciseTrainingAdapter adapter =
-                    new ExerciseTrainingAdapter(exerciseData);
-            binding.recExercises.setAdapter(adapter);
+        binding.recExercises
+                .setLayoutManager(new LinearLayoutManager(getContext()));
+        ExerciseTrainingAdapter adapter =
+                new ExerciseTrainingAdapter(exerciseData);
+        binding.recExercises.setAdapter(adapter);
 
-            currentTraining.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    ExerciseItemTraining tmp = snapshot.getValue(ExerciseItemTraining.class);
-                    exerciseData.add(tmp);
+        currentTraining.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                ExerciseItemTraining tmp = snapshot.getValue(ExerciseItemTraining.class);
+                exerciseData.add(tmp);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                ExerciseItemTraining tmp = snapshot.getValue(ExerciseItemTraining.class);
+                if (exerciseData.contains(tmp)) {
+                    exerciseData.remove(tmp);
                     adapter.notifyDataSetChanged();
                 }
+            }
 
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                }
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
 
-                @SuppressLint("NotifyDataSetChanged")
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                    ExerciseItemTraining tmp = snapshot.getValue(ExerciseItemTraining.class);
-                    if (exerciseData.contains(tmp)) {
-                            exerciseData.remove(tmp);
-                            adapter.notifyDataSetChanged();
-                    }
-                }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+        currentVolume.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    binding.volume.setText(snapshot.getValue().toString());
                 }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-
-            currentVolume.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        binding.volume.setText(snapshot.getValue().toString());
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
 
         return root;

@@ -3,13 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/authorizationFragment">
+    app:startDestination="@id/authorizationFragment">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.gymfinder.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_trainingInfoFragment"
+            app:destination="@id/trainingInfoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_training"
@@ -91,4 +98,9 @@
             android:id="@+id/action_exercisesFragment_to_currentTrainingFragment"
             app:destination="@id/currentTrainingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/trainingInfoFragment"
+        android:name="com.example.gymfinder.ui.home.TrainingInfoFragment"
+        android:label="fragment_training_info"
+        tools:layout="@layout/fragment_training_info" />
 </navigation>

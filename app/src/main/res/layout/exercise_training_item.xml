@@ -26,7 +26,7 @@
             app:cardCornerRadius="90dp">
             <ImageView
                 android:id="@+id/profile_icon"
-                android:src="@drawable/avatar"
+                android:src="@drawable/icon"
                 android:scaleType="centerCrop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

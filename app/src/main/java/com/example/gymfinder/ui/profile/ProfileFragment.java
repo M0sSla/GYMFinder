@@ -157,134 +157,136 @@ public class ProfileFragment extends Fragment {
 
             // listener на узел информации текущего пользователя
             userCurrent.child(user.getUid()).child("trainings").addListenerForSingleValueEvent(trainingsListener);
-        }
-        binding.changeNickname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.editNickname.setText("");
+            binding.changeNickname.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    binding.editNickname.setText("");
 
-                binding.nickname.setVisibility(View.GONE);
-                binding.changeNickname.setVisibility(View.GONE);
+                    binding.nickname.setVisibility(View.GONE);
+                    binding.changeNickname.setVisibility(View.GONE);
 
-                binding.editNickname.setVisibility(View.VISIBLE);
-                binding.applyNickname.setVisibility(View.VISIBLE);
-            }
-        });
-
-        binding.applyNickname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = String.valueOf(binding.editNickname.getText());
-
-                if (!username.trim().isEmpty()) {
-                    username = username.trim();
-                    userCurrent.child(user.getUid()).child("nickname").setValue(username);
-
-                    binding.editNickname.setVisibility(View.GONE);
-                    binding.applyNickname.setVisibility(View.GONE);
-
-                    binding.nickname.setText(username);
-
-                    binding.nickname.setVisibility(View.VISIBLE);
-                    binding.changeNickname.setVisibility(View.VISIBLE);
-
-                    Toast.makeText(getContext(), "Имя пользователя изменено", Toast.LENGTH_SHORT).show();
+                    binding.editNickname.setVisibility(View.VISIBLE);
+                    binding.applyNickname.setVisibility(View.VISIBLE);
                 }
-                else { Toast.makeText(getContext(), "Введите имя пользователя", Toast.LENGTH_SHORT).show(); }
-            }
-        });
+            });
 
-        binding.changeBios.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.changingBios.setText("");
+            binding.applyNickname.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String username = String.valueOf(binding.editNickname.getText());
 
-                binding.bios.setVisibility(View.GONE);
-                binding.changeBios.setVisibility(View.GONE);
+                    if (!username.trim().isEmpty()) {
+                        username = username.trim();
+                        userCurrent.child(user.getUid()).child("nickname").setValue(username);
 
-                binding.changingBios.setVisibility(View.VISIBLE);
-                binding.applyBios.setVisibility(View.VISIBLE);
-            }
-        });
+                        binding.editNickname.setVisibility(View.GONE);
+                        binding.applyNickname.setVisibility(View.GONE);
 
-        binding.applyBios.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String bios = String.valueOf(binding.changingBios.getText());
+                        binding.nickname.setText(username);
 
-                if (!bios.trim().isEmpty()) {
-                    bios = bios.trim();
-                    userCurrent.child(user.getUid()).child("bios").setValue(bios);
+                        binding.nickname.setVisibility(View.VISIBLE);
+                        binding.changeNickname.setVisibility(View.VISIBLE);
 
-                    binding.changingBios.setVisibility(View.GONE);
-                    binding.applyBios.setVisibility(View.GONE);
-
-                    binding.bios.setText(bios);
-
-                    binding.bios.setVisibility(View.VISIBLE);
-                    binding.changeBios.setVisibility(View.VISIBLE);
-
-                    Toast.makeText(getContext(), "Описание изменено", Toast.LENGTH_SHORT).show();
-                }
-                else { Toast.makeText(getContext(), "Введите описание", Toast.LENGTH_SHORT).show(); }
-            }
-        });
-
-        binding.logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Navigation.findNavController(root).navigate(R.id.action_navigation_profile_to_authorizationFragment);
-            }
-        });
-
-        binding.profileIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openImagePicker();
-            }
-        });
-        // Получение пути к файлу в Firebase Storage
-        String avatarPath = "avatars/" + user.getUid() + ".jpg";
-        StorageReference avatarRef = storageRef.child(avatarPath);
-
-        imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                            Uri imageUri = result.getData().getData();
-
-                            // Загрузка файла в Firebase Storage
-                            UploadTask uploadTask = avatarRef.putFile(imageUri);
-
-                            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    // Получение URL-адреса загруженной аватарки
-                                    avatarRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri downloadUri) {
-                                            // Сохранение URL-адреса в базе данных
-                                            userCurrent.child(user.getUid()).child("avatarUrl").setValue(downloadUri.toString());
-
-                                            // установка аватарки
-                                            binding.profileIcon.setImageURI(imageUri);
-                                            Toast.makeText(requireContext(), "Avatar changed successfully",
-                                                    Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // Обработка ошибки загрузки аватарки
-                                    // ну ошибка и ошибка, чо бухтеть то
-                                }
-                            });
-                        }
+                        Toast.makeText(getContext(), "Имя пользователя изменено", Toast.LENGTH_SHORT).show();
                     }
-                });
+                    else { Toast.makeText(getContext(), "Введите имя пользователя", Toast.LENGTH_SHORT).show(); }
+                }
+            });
+
+            binding.changeBios.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    binding.changingBios.setText("");
+
+                    binding.bios.setVisibility(View.GONE);
+                    binding.changeBios.setVisibility(View.GONE);
+
+                    binding.changingBios.setVisibility(View.VISIBLE);
+                    binding.applyBios.setVisibility(View.VISIBLE);
+                }
+            });
+
+            binding.applyBios.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String bios = String.valueOf(binding.changingBios.getText());
+
+                    if (!bios.trim().isEmpty()) {
+                        bios = bios.trim();
+                        userCurrent.child(user.getUid()).child("bios").setValue(bios);
+
+                        binding.changingBios.setVisibility(View.GONE);
+                        binding.applyBios.setVisibility(View.GONE);
+
+                        binding.bios.setText(bios);
+
+                        binding.bios.setVisibility(View.VISIBLE);
+                        binding.changeBios.setVisibility(View.VISIBLE);
+
+                        Toast.makeText(getContext(), "Описание изменено", Toast.LENGTH_SHORT).show();
+                    }
+                    else { Toast.makeText(getContext(), "Введите описание", Toast.LENGTH_SHORT).show(); }
+                }
+            });
+
+            binding.logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FirebaseAuth.getInstance().signOut();
+                    Navigation.findNavController(root).navigate(R.id.action_navigation_profile_to_authorizationFragment);
+                }
+            });
+
+            binding.profileIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openImagePicker();
+                }
+            });
+            // Получение пути к файлу в Firebase Storage
+            String avatarPath = "avatars/" + user.getUid() + ".jpg";
+            StorageReference avatarRef = storageRef.child(avatarPath);
+
+            imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    new ActivityResultCallback<ActivityResult>() {
+                        @Override
+                        public void onActivityResult(ActivityResult result) {
+                            if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                                Uri imageUri = result.getData().getData();
+
+                                // Загрузка файла в Firebase Storage
+                                UploadTask uploadTask = avatarRef.putFile(imageUri);
+
+                                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        // Получение URL-адреса загруженной аватарки
+                                        avatarRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri downloadUri) {
+                                                // Сохранение URL-адреса в базе данных
+                                                userCurrent.child(user.getUid()).child("avatarUrl").setValue(downloadUri.toString());
+
+                                                // установка аватарки
+                                                binding.profileIcon.setImageURI(imageUri);
+                                                Toast.makeText(requireContext(), "Avatar changed successfully",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Обработка ошибки загрузки аватарки
+                                        // ну ошибка и ошибка, чо бухтеть то
+                                    }
+                                });
+                            }
+                        }
+                    });
+        }
+
+
 
         return root;
     }
