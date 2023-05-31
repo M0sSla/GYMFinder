@@ -88,7 +88,7 @@
         />
 
     <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME"
+        app:cardBackgroundColor="@color/white"
         android:id="@+id/card_friends_icon"
         app:layout_constraintStart_toEndOf="@id/card_profile_icon"
         app:layout_constraintTop_toTopOf="@id/card_profile_icon"
@@ -99,6 +99,7 @@
         android:layout_marginTop="42dp"
         app:cardCornerRadius="4dp">
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/name_friends"
             android:maxLines="1"
             android:ellipsize="end"
@@ -106,23 +107,22 @@
             android:layout_height="wrap_content"
             android:gravity="center|top"
             android:textSize="11sp"
-            android:textColor="@color/black"
             android:text="@string/friends"
             />
+
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/count_of_friends"
-            android:maxLines="1"
-            android:ellipsize="end"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:ellipsize="end"
             android:gravity="center"
+            android:maxLines="1"
             android:textSize="18sp"
-            android:textColor="@color/black"
-            tools:text="10"
-            />
+            tools:text="10" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME"
+        app:cardBackgroundColor="@color/white"
         android:id="@+id/card_trainings_count_icon"
         app:layout_constraintStart_toEndOf="@id/card_friends_icon"
         app:layout_constraintTop_toTopOf="@id/card_profile_icon"
@@ -133,6 +133,7 @@
         android:layout_marginTop="42dp"
         app:cardCornerRadius="4dp">
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/name_trainings"
             android:maxLines="1"
             android:ellipsize="end"
@@ -140,10 +141,10 @@
             android:layout_height="wrap_content"
             android:gravity="center|top"
             android:textSize="11sp"
-            android:textColor="@color/black"
             android:text="@string/trainings"
             />
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/count_of_trainings"
             android:maxLines="1"
             android:ellipsize="end"
@@ -151,7 +152,6 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="18sp"
-            android:textColor="@color/black"
             tools:text="10"
             />
     </androidx.cardview.widget.CardView>

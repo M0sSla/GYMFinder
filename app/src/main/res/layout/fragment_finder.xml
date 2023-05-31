@@ -23,10 +23,10 @@
 
 
     <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME"
+        app:cardCornerRadius="16dp"
         android:background="@drawable/profile"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:id="@+id/Fragment"
@@ -39,36 +39,52 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/Fragment_avatar"
-            android:src="@drawable/avatar"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar" />
 
     </androidx.cardview.widget.CardView>
 
-    <ImageButton
-        android:background="@color/TRETIARY_DARK_SCHEME"
-        android:id="@+id/dislike"
-        android:src="@drawable/dislike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@id/like"
-        app:layout_constraintTop_toBottomOf="@id/Fragment"
-        app:layout_constraintStart_toStartOf="@id/Fragment"
-        android:layout_margin="16dp"
-        />
 
-    <ImageButton
-        android:background="@color/TRETIARY_DARK_SCHEME"
+    <androidx.cardview.widget.CardView
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="?attr/colorPrimary"
+        app:cardCornerRadius="45dp"
+        android:id="@+id/dislike"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="32dp">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="?attr/colorPrimary"
+            android:src="@drawable/dislike" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="?attr/colorPrimary"
+        app:cardCornerRadius="45dp"
         android:id="@+id/like"
-        android:src="@drawable/like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/dislike"
-        app:layout_constraintTop_toBottomOf="@id/Fragment"
-        app:layout_constraintEnd_toEndOf="@id/Fragment"
-        android:layout_margin="16dp"
-        />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="32dp">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="?attr/colorPrimary"
+            android:src="@drawable/like" />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

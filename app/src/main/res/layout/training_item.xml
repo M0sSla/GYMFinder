@@ -3,7 +3,6 @@
     android:id="@+id/training_item_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/SECONDARY_DARK_SCHEME"
     app:cardCornerRadius="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
@@ -43,7 +42,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@id/card_profile_icon"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +53,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/card_profile_icon"
             app:layout_constraintTop_toBottomOf="@id/nickname" />
@@ -66,14 +63,13 @@
             android:text="@string/nickname"
             android:layout_marginStart="8dp"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/card_profile_icon"
             app:layout_constraintStart_toStartOf="parent"
             />
 
         <androidx.cardview.widget.CardView
-            app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME"
+            app:cardBackgroundColor="@color/white"
             android:id="@+id/card_duration_icon"
             app:layout_constraintTop_toBottomOf="@id/info"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +102,7 @@
                 />
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
-            app:cardBackgroundColor="@color/TRETIARY_DARK_SCHEME"
+            app:cardBackgroundColor="@color/white"
             android:id="@+id/card_volume_icon"
             app:layout_constraintTop_toBottomOf="@id/info"
             app:layout_constraintStart_toEndOf="@id/card_duration_icon"
@@ -127,27 +123,27 @@
                 android:textSize="11sp"
                 android:text="@string/volume"
                 />
+
             <TextView
                 android:textColor="@color/black"
                 android:id="@+id/volume"
-                android:maxLines="1"
-                android:ellipsize="end"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:ellipsize="end"
                 android:gravity="center|bottom"
-                tools:text="10"
-                />
+                android:maxLines="1"
+                tools:text="10" />
         </androidx.cardview.widget.CardView>
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginTop="32dp"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_volume_icon"
-            android:background="@color/PRIMARY_DARK_SCHEME"
-            android:src="@drawable/like"/>
+            android:background="@drawable/round_button"
+            android:src="@drawable/like" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
