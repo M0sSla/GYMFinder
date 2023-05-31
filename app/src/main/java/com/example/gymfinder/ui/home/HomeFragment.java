@@ -63,11 +63,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 if (snapshot.exists()) {
-                    for (DataSnapshot snap : snapshot.getChildren()) {
-                        TrainingItem tmp = snapshot.getValue(TrainingItem.class);
+                    TrainingItem tmp = snapshot.getValue(TrainingItem.class);
+                    if (!trainingData.contains(tmp)) {
                         trainingData.add(tmp);
-                        adapter.notifyDataSetChanged();
                     }
+                    adapter.notifyDataSetChanged();
                 }
             }
             @Override
@@ -77,13 +77,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    for (DataSnapshot snap : snapshot.getChildren()) {
-                        TrainingItem tmp = snapshot.getValue(TrainingItem.class);
-                        if (trainingData.contains(tmp)) {
-                            trainingData.remove(tmp);
-                            adapter.notifyDataSetChanged();
-                        }
+                    TrainingItem tmp = snapshot.getValue(TrainingItem.class);
+                    if (trainingData.contains(tmp)) {
+                        trainingData.remove(tmp);
                     }
+                    adapter.notifyDataSetChanged();
                 }
             }
             @Override

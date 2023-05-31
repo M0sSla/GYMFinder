@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 public class CurrentTrainingFragment extends Fragment {
 
+    //
     FragmentCurrentTrainingBinding binding;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -124,8 +125,13 @@ public class CurrentTrainingFragment extends Fragment {
         currentVolume.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    binding.volume.setText(snapshot.getValue().toString());
+                if (snapshot.exists() && binding != null) {
+                    if (!snapshot.getValue().toString().equals(binding.volume.getText())) {
+                        binding.volume.setText(snapshot.getValue().toString());
+                    }
+                    else {
+                        binding.volume.setText("0");
+                    }
                 }
             }
             @Override
@@ -177,24 +183,20 @@ public class CurrentTrainingFragment extends Fragment {
                                 if (snapshot.exists()) {
                                     String nickname = snapshot.child("nickname").getValue().toString();
                                     Integer volume = Integer.parseInt(snapshot.child("currentVolume").getValue().toString());
-                                    String info = snapshot.child("currentInfo").getValue().toString();
+                                    String info;
+                                    if (snapshot.child("currentInfo").exists()) {
+                                        info = snapshot.child("currentInfo").getValue().toString();
+                                    }
+                                    else {
+                                        info = "";
+                                    }
                                     TrainingItem newTraining =
                                             new TrainingItem(0, volume, nickname, info, 0);
                                     String trainingId = training.push().getKey();
                                     training.child(trainingId).setValue(newTraining);
                                     currentTraining.removeValue();
-                                    try {
-                                        Thread.sleep(3000);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                    currentVolume.removeValue();
-                                    try {
-                                        Thread.sleep(3000);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                    currentInfo.removeValue();
+                                    currentVolume.setValue(0);
+                                    currentInfo.setValue("");
                                 }
                             }
                             @Override

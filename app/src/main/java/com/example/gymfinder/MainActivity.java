@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements HidingBottomNav {
                 R.id.navigation_home, R.id.navigation_finder, R.id.navigation_training, R.id.navigation_profile)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        // NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
 
