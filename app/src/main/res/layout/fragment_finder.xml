@@ -60,6 +60,7 @@
         android:layout_margin="32dp">
 
         <ImageButton
+            android:id="@+id/dislike2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -80,6 +81,7 @@
         android:layout_margin="32dp">
 
         <ImageButton
+            android:id="@+id/like2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
