@@ -7,12 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.gymfinder.R;
 import com.example.gymfinder.databinding.FragmentFinderBinding;
@@ -23,13 +23,8 @@ public class FinderFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        FinderViewModel finderViewModel =
-                new ViewModelProvider(this).get(FinderViewModel.class);
         binding = FragmentFinderBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        final TextView textView = binding.textFinder;
-        finderViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         @SuppressLint("ResourceType") Animation swipeLeftAnimation = AnimationUtils.loadAnimation(getContext(), R.drawable.swipe_left);
         @SuppressLint("ResourceType") Animation swipeRightAnimation = AnimationUtils.loadAnimation(getContext(), R.drawable.swipe_right);
@@ -62,7 +57,27 @@ public class FinderFragment extends Fragment {
             }
         });
 
+        binding.message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDialog();
+            }
+        });
+
+        binding.message2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDialog();
+            }
+        });
+
         return root;
+    }
+
+    private void createDialog() {
+        Dialog dialog = Dialog.newInstance("https://www.google.com/ - dfhfisud");
+        assert getFragmentManager() != null;
+        dialog.show(getFragmentManager(), "my_dialog");
     }
 
     @Override

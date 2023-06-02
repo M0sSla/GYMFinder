@@ -30,4 +30,5 @@
     <string name="also_sign_in">ВХОД</string>
     <string name="also_reg_in">РЕГИСТРАЦИЯ</string>
     <string name="zero_value">0</string>
+    <string name="hint_alert_dialog">https://www.google.com/</string>
 </resources>
