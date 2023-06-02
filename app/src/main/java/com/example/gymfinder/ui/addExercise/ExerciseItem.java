@@ -2,6 +2,9 @@ package com.example.gymfinder.ui.addExercise;
 
 import java.io.Serializable;
 
+/**
+ * Элемент рекуклера
+ */
 public class ExerciseItem implements Serializable {
 
     private Integer id;
@@ -14,6 +17,9 @@ public class ExerciseItem implements Serializable {
         this.group = group;
     }
 
+    /**
+     * Пустой конструктор для работы Firebase
+     */
     public ExerciseItem() {}
 
     public Integer getId() {

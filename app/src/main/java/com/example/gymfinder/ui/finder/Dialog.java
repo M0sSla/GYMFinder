@@ -14,6 +14,9 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.gymfinder.R;
 
+/**
+ * Создание собственного dialog fragment
+ */
 public class Dialog extends DialogFragment {
 
     private String message = "";

@@ -20,6 +20,19 @@ import com.example.gymfinder.databinding.FragmentFinderBinding;
 public class FinderFragment extends Fragment {
     private FragmentFinderBinding binding;
 
+    /**
+     *  Перегруз метода для основная логики работы фрагмента
+     * @param inflater The LayoutInflater object that can be used to inflate
+     * any views in the fragment,
+     * @param container If non-null, this is the parent view that the fragment's
+     * UI should be attached to.  The fragment should not add the view itself,
+     * but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     *
+     *
+     * @return root
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,12 +87,19 @@ public class FinderFragment extends Fragment {
         return root;
     }
 
+
+    /**
+     * Создание маленького диалогового окна, которое отсылает к bios пользователя
+     */
     private void createDialog() {
         Dialog dialog = Dialog.newInstance("https://www.google.com/ - dfhfisud");
         assert getFragmentManager() != null;
         dialog.show(getFragmentManager(), "my_dialog");
     }
 
+    /**
+     * Перегруз метода для обнуления binding
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

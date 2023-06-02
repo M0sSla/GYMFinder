@@ -11,6 +11,9 @@ import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 
+/**
+ * Загатовка под локальную бд
+ */
 @Dao
 public interface TrainingDAO {
 

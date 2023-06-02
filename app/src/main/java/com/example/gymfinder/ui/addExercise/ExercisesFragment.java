@@ -49,24 +49,6 @@ public class ExercisesFragment extends Fragment {
         ExerciseAdapter adapter = new ExerciseAdapter(exercises);
         binding.recExercises.setAdapter(adapter);
 
-
-        /*
-        ExerciseItem item1 = new ExerciseItem(0,"Отжимания", "Грудные мыщцы");
-        ExerciseItem item11 = new ExerciseItem(1, "Жим лёжа", "Грудные мыщцы");
-        ExerciseItem item12 = new ExerciseItem(2, "Жим лёжа гантелями", "Грудные мыщцы");
-        ExerciseItem item13 = new ExerciseItem(3, "Разведение рук с гантелями", "Грудные мыщцы");
-        ExerciseItem item21 = new ExerciseItem(4, "Подтягивания", "Широчайшие мыщцы");
-        ExerciseItem item22 = new ExerciseItem(5, "Вертикальная тяга широчайшими", "Широчайшие мыщцы");
-        ExerciseItem item3 = new ExerciseItem(6, "Гиперэкстензия", "Столбовидные мыщцы");
-        ExerciseItem item4 = new ExerciseItem(7, "Скручивания", "Брюшной пресс");
-        ExerciseItem item51 = new ExerciseItem(8, "Жим сидя над головой", "Плечи");
-        ExerciseItem item52 = new ExerciseItem(9, "Жим Арнольда", "Плечи");
-        ExerciseItem item61 = new ExerciseItem(10, "21 сгибание", "Бицепс");
-        ExerciseItem item62 = new ExerciseItem(11, "Молотки", "Бицепс");
-        ExerciseItem item63 = new ExerciseItem(12, "Сгибание со штангой", "Бицепс");
-        String exerciseId = exercise.push().getKey();
-        exercise.child(exerciseId).setValue(item63);*/
-
         exercise.addChildEventListener(new ChildEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -89,27 +71,6 @@ public class ExercisesFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
-        // Не обязательно иметь данный кусок кода, без него не ломается но пока что оставлю
-        /*ValueEventListener exerciseListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    ExerciseItem message = dataSnapshot.getValue(ExerciseItem.class);
-                    if (exercises.contains(message)) {
-                        exercises.add(message);
-                        adapter.notifyDataSetChanged();
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Обработка ошибки получения значения
-                Toast.makeText(getContext(), "Значения не получены", Toast.LENGTH_SHORT).show();
-            }
-        };
-        // listener на узел информации текущего пользователя
-        exercise.addListenerForSingleValueEvent(exerciseListener);*/
 
         // Инициализация ConnectivityManager
         connectivityManager = (ConnectivityManager) requireContext().getSystemService(Context.CONNECTIVITY_SERVICE);

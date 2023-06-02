@@ -8,6 +8,9 @@ import androidx.room.RoomDatabase;
 
 import com.example.gymfinder.TrainingItem;
 
+/**
+ * Загатовка под локальную бд
+ */
 @Database(entities = {TrainingItem.class}, version = 1)
 public abstract class TrainingDB extends RoomDatabase {
     private static TrainingDB instance;

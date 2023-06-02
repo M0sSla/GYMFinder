@@ -8,6 +8,9 @@ import android.widget.ProgressBar;
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 
+/**
+ * Фрагмент, который вроде как не используется:)
+ */
 public class BaseAuth extends Fragment {
     @VisibleForTesting
     public ProgressBar progressBar;

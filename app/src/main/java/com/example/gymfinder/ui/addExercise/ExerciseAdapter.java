@@ -21,6 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+/**
+ * Адаптер для упражнений
+ */
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>{
 
     private final ArrayList<ExerciseItem> data;
@@ -70,6 +73,9 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         return data.size();
     }
 
+    /**
+     * Класс элемента recycler
+     */
     class ExerciseViewHolder extends RecyclerView.ViewHolder {
         ExerciseItemBinding binding;
         public ExerciseViewHolder(ExerciseItemBinding binding) {
